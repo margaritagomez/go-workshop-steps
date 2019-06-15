@@ -28,13 +28,15 @@ type Pokemon struct {
 	Name          string `json:"name"`
 	EvolvesTo     string `json:"evolves_to,omitempty"`
 	Types         []Type `json:"types"`
+	Level         int    `json:"level"`
 }
 
-func newPokemon(pokedexNumber int, name string, evolvesTo string, types []string) Pokemon {
-	newPokemon := Pokemon{
+func newPokemon(pokedexNumber int, name string, evolvesTo string, level int, types []string) *Pokemon {
+	newPokemon := &Pokemon{
 		PokedexNumber: pokedexNumber,
 		Name:          name,
 		EvolvesTo:     evolvesTo,
+		Level:         level,
 	}
 
 	for _, t := range types {
