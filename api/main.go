@@ -2,27 +2,19 @@ package main
 
 import (
 	"fmt"
-	"html"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-var pokemons []Pokemon
+var (
+	pokemons []Pokemon
+	pokedex  map[int]Pokemon
+)
 
 func init() {
-	pokemons = []Pokemon{
-		Pokemon{
-			PokedexNumber: 1,
-			Name:          "Bulbasaur",
-			EvolvesTo:     "Ivysaur",
-			Types: []Type{
-				TypeGrass,
-				TypePoison,
-			},
-		},
-	}
+	NewPokemon(1, "Bulbasaur", "Ivysaur", []string{"grass", "venom"})
 }
 
 func main() {
@@ -33,5 +25,5 @@ func main() {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	fmt.Fprintf(w, "Hello, %q", r.URL.Path)
 }

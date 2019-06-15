@@ -1,5 +1,28 @@
 package main
 
+type Type string
+
+const (
+	TypeGrass    Type = "grass"
+	TypeDark     Type = "dark"
+	TypePsychic  Type = "psychic"
+	TypeFighting Type = "fighting"
+	TypeIce      Type = "ice"
+	TypeGround   Type = "ground"
+	TypeElectric Type = "electric"
+	TypeBug      Type = "bug"
+	TypeWater    Type = "water"
+	TypeRock     Type = "rock"
+	TypeFairy    Type = "fairy"
+	TypeFlying   Type = "flying"
+	TypeFire     Type = "fire"
+	TypePoison   Type = "poison"
+	TypeNormal   Type = "normal"
+	TypeGhost    Type = "ghost"
+	TypeDragon   Type = "dragon"
+	TypeSteel    Type = "steel"
+)
+
 type Pokemon struct {
 	PokedexNumber int    `json:"pokedex_number"`
 	Name          string `json:"name"`
@@ -7,25 +30,19 @@ type Pokemon struct {
 	Types         []Type `json:"types"`
 }
 
-type Type string
+func NewPokemon(pokedexNumber int, name string, evolvesTo string, types []string) Pokemon {
+	newPokemon := Pokemon{
+		PokedexNumber: pokedexNumber,
+		Name:          name,
+		EvolvesTo:     evolvesTo,
+	}
 
-const (
-	TypeGrass    Type = "Grass"
-	TypeDark     Type = "Dark"
-	TypePsychic  Type = "Psychic"
-	TypeFighting Type = "Fighting"
-	TypeIce      Type = "Ice"
-	TypeGround   Type = "Ground"
-	TypeElectric Type = "Electric"
-	TypeBug      Type = "Bug"
-	TypeWater    Type = "Water"
-	TypeRock     Type = "Rock"
-	TypeFairy    Type = "Fairy"
-	TypeFlying   Type = "Flying"
-	TypeFire     Type = "Fire"
-	TypePoison   Type = "Poison"
-	TypeNormal   Type = "Normal"
-	TypeGhost    Type = "Ghost"
-	TypeDragon   Type = "Dragon"
-	TypeSteel    Type = "Steel"
-)
+	for _, t := range types {
+		newPokemon.Types = append(newPokemon.Types, Type(t))
+	}
+
+	pokemons = append(pokemons, newPokemon)
+	pokedex[pokedexNumber] = newPokemon
+
+	return newPokemon
+}
