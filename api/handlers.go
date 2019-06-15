@@ -1,12 +1,14 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
 
 func getMyPokemons(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "get pokemons")
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(pokemons)
 }
 
 func choosePokemon(w http.ResponseWriter, r *http.Request) {
