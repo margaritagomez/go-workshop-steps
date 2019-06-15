@@ -30,7 +30,7 @@ type Pokemon struct {
 	Types         []Type `json:"types"`
 }
 
-func NewPokemon(pokedexNumber int, name string, evolvesTo string, types []string) Pokemon {
+func newPokemon(pokedexNumber int, name string, evolvesTo string, types []string) Pokemon {
 	newPokemon := Pokemon{
 		PokedexNumber: pokedexNumber,
 		Name:          name,

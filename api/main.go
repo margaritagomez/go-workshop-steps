@@ -14,7 +14,7 @@ var (
 )
 
 func init() {
-	NewPokemon(1, "Bulbasaur", "Ivysaur", []string{"grass", "venom"})
+	newPokemon(1, "Bulbasaur", "Ivysaur", []string{"grass", "venom"})
 }
 
 func main() {
