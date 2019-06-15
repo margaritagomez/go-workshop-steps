@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -10,7 +9,7 @@ import (
 
 var (
 	pokemons []Pokemon
-	pokedex  map[int]Pokemon
+	pokedex  = make(map[int]Pokemon)
 )
 
 func init() {
@@ -20,10 +19,11 @@ func init() {
 func main() {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/", Index)
-	log.Fatal(http.ListenAndServe(":8080", router))
-}
+	router.HandleFunc("/pokemons", getMyPokemons).Methods("GET")
+	router.HandleFunc("/pokemons", capturePokemon).Methods("POST")
+	router.HandleFunc("/pokemons/{pokedexID}", choosePokemon).Methods("GET")
+	router.HandleFunc("/pokemons/{pokedexID}", renamePokemon).Methods("PUT")
+	router.HandleFunc("/pokemons/{pokedexID}", transferPokemon).Methods("DELETE")
 
-func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q", r.URL.Path)
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

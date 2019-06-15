@@ -17,7 +17,7 @@ func capturePokemon(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "create pokemon")
 }
 
-func evolvePokemon(w http.ResponseWriter, r *http.Request) {
+func renamePokemon(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "update pokemon")
 }
 
